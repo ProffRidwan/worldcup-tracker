@@ -60,7 +60,8 @@
               "buildTarget": "worldcup-tracker:build:production"
             },
             "development": {
-              "buildTarget": "worldcup-tracker:build:development"
+              "buildTarget": "worldcup-tracker:build:development",
+              "proxyConfig": "proxy.conf.json"
             }
           },
           "defaultConfiguration": "development"
