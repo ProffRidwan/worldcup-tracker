@@ -20,7 +20,8 @@ export class AppComponent {
   loadingMatches = true;
   selectedGroup = 'A';
   groups = ['A','B','C','D','E','F','G','H','I','J','K','L'];
-  today = new Date().toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long' });
+  today = new Date(new Date().getTime() + 60 * 60000)
+  .toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long' });
 
   constructor(private http: HttpClient) {
     this.fetchStandings();
@@ -43,19 +44,24 @@ export class AppComponent {
       });
   }
 
-  fetchTodayMatches() {
-    const today = new Date().toISOString().split('T')[0];
-    this.http.get<any>(
-      `${this.BASE_URL}/competitions/WC/matches?dateFrom=${today}&dateTo=${today}`,
-      this.getHeaders()
-    ).subscribe({
-      next: (data) => {
-        this.matches = data.matches;
-        this.loadingMatches = false;
-      },
-      error: () => this.loadingMatches = false
-    });
-  }
+fetchTodayMatches() {
+  const now = new Date();
+  // offset for Nigeria (UTC+1)
+  const nigeriaOffset = 1 * 60;
+  const localTime = new Date(now.getTime() + (nigeriaOffset - now.getTimezoneOffset()) * 60000);
+  const today = localTime.toISOString().split('T')[0];
+
+  this.http.get<any>(
+    `${this.BASE_URL}/competitions/WC/matches?dateFrom=${today}&dateTo=${today}`,
+    this.getHeaders()
+  ).subscribe({
+    next: (data) => {
+      this.matches = data.matches;
+      this.loadingMatches = false;
+    },
+    error: () => this.loadingMatches = false
+  });
+}
 
   getGroupStandings() {
     const group = this.standings.find(s => s.group === `Group ${this.selectedGroup}`);
