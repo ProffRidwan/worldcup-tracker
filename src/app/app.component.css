@@ -165,3 +165,26 @@ tr:hover td { background: rgba(255,255,255,0.03); }
 footer { text-align: center; padding: 32px 16px; color: #4b5563; font-size: 0.8rem; border-top: 1px solid rgba(255,255,255,0.05); }
 footer a { color: #6fcf97; text-decoration: none; font-weight: 600; }
 footer a:hover { color: #a7f3d0; }
+
+/* ── Mobile Responsive ── */
+@media (max-width: 600px) {
+  .header-content { flex-direction: column; gap: 12px; text-align: center; }
+  .donate-btn { width: 100%; text-align: center; }
+
+  .matches-grid { grid-template-columns: 1fr; }
+
+  .match-body { gap: 4px; }
+  .crest { width: 30px; height: 30px; }
+  .team-name { font-size: 0.72rem; }
+  .score { font-size: 1.3rem; }
+
+  .group-tabs button { padding: 6px 12px; font-size: 0.75rem; }
+
+  table { font-size: 0.75rem; }
+  th, td { padding: 8px 5px; }
+  .team-cell { min-width: 90px; gap: 6px; }
+  .crest-sm { width: 18px; height: 18px; }
+
+  main { padding: 20px 12px; }
+  .section-header h2 { font-size: 1rem; }
+}
