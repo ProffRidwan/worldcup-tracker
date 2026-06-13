@@ -24,9 +24,6 @@ private refreshInterval: any;
   loadingMatches = true;
   selectedGroup = 'A';
   groups = ['A','B','C','D','E','F','G','H','I','J','K','L'];
-  today = new Date().toLocaleDateString('en-GB', { 
-  weekday: 'long', day: 'numeric', month: 'long' 
-});
 
   constructor(private http: HttpClient) {
     this.fetchStandings();
@@ -36,8 +33,21 @@ private refreshInterval: any;
   this.fetchTodayMatches();
   this.fetchStandings();
 }, 30000);
+
+ // Reload page at midnight so date resets cleanly
+  const now = new Date();
+  const msUntilMidnight = new Date(
+    now.getFullYear(), now.getMonth(), now.getDate() + 1, 0, 0, 30
+  ).getTime() - now.getTime();
+  setTimeout(() => window.location.reload(), msUntilMidnight);
   }
 
+  
+get today() {
+  return new Date().toLocaleDateString('en-GB', { 
+    weekday: 'long', day: 'numeric', month: 'long' 
+  });
+}
   getHeaders() {
     return { headers: new HttpHeaders({ 'X-Auth-Token': this.API_TOKEN }) };
   }
