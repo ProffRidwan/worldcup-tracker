@@ -1,18 +1,21 @@
 import { Component } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
+import { FixturesComponent } from './fixtures/fixtures.component';
+
+
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FixturesComponent],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
   API_TOKEN = '95fcbd3a84014286a1d461d1e2bb27ef';
-  // BASE_URL = 'https://api.football-data.org/v4';
   BASE_URL = '/api/v4';
+  currentPage = 'home';
 
   standings: any[] = [];
   matches: any[] = [];

@@ -16,8 +16,13 @@
   </header>
 
   <main>
-    <!-- Today's Matches -->
-    <section class="section">
+    <div class="nav-tabs">
+  <button [class.active]="currentPage === 'home'" (click)="currentPage = 'home'">🏠 Home</button>
+  <button [class.active]="currentPage === 'fixtures'" (click)="currentPage = 'fixtures'">📋 Fixtures</button>
+</div>
+<div *ngIf="currentPage === 'home'">
+  <!-- Today's Matches section -->
+   <section class="section">
       <div class="section-header">
         <h2>📅 Today's Matches</h2>
         <span class="date-badge">{{ today }}</span>
@@ -66,9 +71,8 @@
         </div>
       </div>
     </section>
-
-    <!-- Group Standings -->
-    <section class="section">
+  <!-- Group Standings section -->
+     <section class="section">
       <div class="section-header">
         <h2>🏆 Group Standings</h2>
       </div>
@@ -128,6 +132,12 @@
         <div class="qualify-legend">🟢 Qualify for Round of 32</div>
       </div>
     </section>
+</div>
+
+<div *ngIf="currentPage === 'fixtures'">
+  <app-fixtures></app-fixtures>
+</div>
+   
   </main>
 
   <footer>

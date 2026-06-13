@@ -188,3 +188,17 @@ footer a:hover { color: #a7f3d0; }
   main { padding: 20px 12px; }
   .section-header h2 { font-size: 1rem; }
 }
+.nav-tabs {
+  display: flex; gap: 10px; margin-bottom: 28px;
+}
+.nav-tabs button {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  color: #9ca3af; padding: 10px 24px; border-radius: 24px;
+  cursor: pointer; font-size: 0.9rem; font-weight: 600;
+  transition: all 0.2s;
+}
+.nav-tabs button.active {
+  background: linear-gradient(135deg, #1a4a2e, #2d6a4f);
+  border-color: #6fcf97; color: #fff;
+}

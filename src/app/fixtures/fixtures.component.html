@@ -1,0 +1,50 @@
+<div class="fixtures-container">
+  <div class="matchday-tabs">
+    <button *ngFor="let day of matchdays"
+      [class.active]="selectedMatchday === day"
+      (click)="selectMatchday(day)">
+      Matchday {{ day }}
+    </button>
+  </div>
+
+  <div *ngIf="loading" class="skeleton-list">
+    <div class="skeleton-item" *ngFor="let i of [1,2,3,4,5,6]"></div>
+  </div>
+
+  <div *ngIf="!loading">
+    <div *ngFor="let date of getDateKeys()" class="date-group">
+
+      <div class="date-header">{{ date }}</div>
+
+      <div class="fixture-card" *ngFor="let match of groupedMatches[date]"
+           [class.finished]="match.status === 'FINISHED'"
+           [class.live]="match.status === 'IN_PLAY'">
+
+        <div class="fixture-group">{{ match.group?.replace('GROUP_', 'Group ') }}</div>
+
+        <div class="fixture-body">
+          <div class="fixture-team home">
+            <img [src]="match.homeTeam.crest" class="crest" onerror="this.style.display='none'"/>
+            <span>{{ match.homeTeam.shortName || match.homeTeam.name }}</span>
+          </div>
+
+          <div class="fixture-score">
+            <span class="score-text" [class.vs]="match.status === 'TIMED' || match.status === 'SCHEDULED'">
+              {{ getScoreDisplay(match) }}
+            </span>
+            <span class="status-pill"
+              [class.live-pill]="match.status === 'IN_PLAY'"
+              [class.ft-pill]="match.status === 'FINISHED'">
+              {{ getMatchStatus(match) }}
+            </span>
+          </div>
+
+          <div class="fixture-team away">
+            <img [src]="match.awayTeam.crest" class="crest" onerror="this.style.display='none'"/>
+            <span>{{ match.awayTeam.shortName || match.awayTeam.name }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
