@@ -24,17 +24,18 @@ private refreshInterval: any;
   loadingMatches = true;
   selectedGroup = 'A';
   groups = ['A','B','C','D','E','F','G','H','I','J','K','L'];
-  today = new Date(new Date().getTime() + 60 * 60000)
-  .toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long' });
+  today = new Date().toLocaleDateString('en-GB', { 
+  weekday: 'long', day: 'numeric', month: 'long' 
+});
 
   constructor(private http: HttpClient) {
     this.fetchStandings();
     this.fetchTodayMatches();
 
-  this.refreshInterval = setInterval(() => {
-    this.fetchTodayMatches();
-    this.fetchStandings();
-  }, 60000);
+ this.refreshInterval = setInterval(() => {
+  this.fetchTodayMatches();
+  this.fetchStandings();
+}, 30000);
   }
 
   getHeaders() {
@@ -55,10 +56,10 @@ private refreshInterval: any;
 
 fetchTodayMatches() {
   const now = new Date();
-  // offset for Nigeria (UTC+1)
-  const nigeriaOffset = 1 * 60;
-  const localTime = new Date(now.getTime() + (nigeriaOffset - now.getTimezoneOffset()) * 60000);
-  const today = localTime.toISOString().split('T')[0];
+  const year = now.getFullYear();
+  const month = String(now.getMonth() + 1).padStart(2, '0');
+  const day = String(now.getDate()).padStart(2, '0');
+  const today = `${year}-${month}-${day}`;
 
   this.http.get<any>(
     `${this.BASE_URL}/competitions/WC/matches?dateFrom=${today}&dateTo=${today}`,
@@ -71,7 +72,6 @@ fetchTodayMatches() {
     error: () => this.loadingMatches = false
   });
 }
-
   getGroupStandings() {
     const group = this.standings.find(s => s.group === `Group ${this.selectedGroup}`);
     return group ? group.table : [];
