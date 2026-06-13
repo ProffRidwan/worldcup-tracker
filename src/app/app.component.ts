@@ -1,8 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { FixturesComponent } from './fixtures/fixtures.component';
-
 
 
 @Component({
@@ -12,7 +11,9 @@ import { FixturesComponent } from './fixtures/fixtures.component';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnDestroy {
+private refreshInterval: any;
+
   API_TOKEN = '95fcbd3a84014286a1d461d1e2bb27ef';
   BASE_URL = '/api/v4';
   currentPage = 'home';
@@ -29,6 +30,11 @@ export class AppComponent {
   constructor(private http: HttpClient) {
     this.fetchStandings();
     this.fetchTodayMatches();
+
+  this.refreshInterval = setInterval(() => {
+    this.fetchTodayMatches();
+    this.fetchStandings();
+  }, 60000);
   }
 
   getHeaders() {
@@ -76,4 +82,7 @@ fetchTodayMatches() {
     if (match.status === 'IN_PLAY') return 'LIVE';
     return new Date(match.utcDate).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
   }
+  ngOnDestroy() {
+  if (this.refreshInterval) clearInterval(this.refreshInterval);
+}
 }
