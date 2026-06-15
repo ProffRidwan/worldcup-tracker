@@ -16,9 +16,11 @@
   </header>
 
   <main>
-    <div class="nav-tabs">
+ <div class="nav-tabs">
   <button [class.active]="currentPage === 'home'" (click)="currentPage = 'home'">🏠 Home</button>
   <button [class.active]="currentPage === 'fixtures'" (click)="currentPage = 'fixtures'">📋 Fixtures</button>
+  <button [class.active]="currentPage === 'about'" (click)="currentPage = 'about'">ℹ️ About</button>
+  <button [class.active]="currentPage === 'contact'" (click)="currentPage = 'contact'">✉️ Contact</button>
 </div>
 <div *ngIf="currentPage === 'home'">
   <!-- Today's Matches section -->
@@ -137,7 +139,64 @@
 <div *ngIf="currentPage === 'fixtures'">
   <app-fixtures></app-fixtures>
 </div>
-   
+   <!-- About Page -->
+<div *ngIf="currentPage === 'about'" class="static-page">
+  <h2>About World Cup 2026 Tracker</h2>
+  <p>Welcome to the World Cup 2026 Live Tracker — a free, fast, and mobile-friendly app built to help football fans follow every match of the 2026 FIFA World Cup.</p>
+
+  <p>This app provides real-time match scores, group standings, and full fixture lists for all 104 matches across the tournament, covering all 48 participating nations.</p>
+
+  <h3>Why I Built This</h3>
+  <p>My name is Ridwan, a software engineer based in Nigeria. I built this app during the 2026 World Cup to give football fans — especially across Africa — a clean, simple, and free tool to follow the tournament without any clutter or distractions.</p>
+
+  <h3>What You Get</h3>
+  <ul>
+    <li>⚽ Live match scores updated automatically</li>
+    <li>🏆 Group standings for all 12 groups</li>
+    <li>📋 Full fixture list with matchday filters</li>
+    <li>📱 Works perfectly on any mobile device</li>
+    <li>🆓 Completely free — no login, no signup</li>
+  </ul>
+
+  <h3>Tech Stack</h3>
+  <p>Built with Angular 17, powered by the football-data.org API, and deployed on Vercel.</p>
+
+  <p>Follow the developer on X (Twitter) for updates and new features throughout the tournament.</p>
+</div>
+
+<!-- Contact Page -->
+<div *ngIf="currentPage === 'contact'" class="static-page">
+  <h2>Contact Us</h2>
+  <p>Have feedback, suggestions, or found a bug? I'd love to hear from you!</p>
+
+  <div class="contact-card">
+    <div class="contact-item">
+      <span class="contact-icon">✉️</span>
+      <div>
+        <strong>Email</strong>
+        <p>Send your message to: <a href="mailto:abidoyeridwan3@gmail.com">abidoyeridwan3@gmail.com</a></p>
+      </div>
+    </div>
+
+    <div class="contact-item">
+      <span class="contact-icon">𝕏</span>
+      <div>
+        <strong>Twitter / X</strong>
+        <p>Reach out or follow for updates: <a href="https://x.com/Abidoyeridwan" target="_blank">@https://x.com/Abidoyeridwan</a></p>
+      </div>
+    </div>
+
+    <div class="contact-item">
+      <span class="contact-icon">🌍</span>
+      <div>
+        <strong>Location</strong>
+        <p>Lagos, Nigeria 🇳🇬</p>
+      </div>
+    </div>
+  </div>
+
+  <p class="contact-note">I typically respond within 24-48 hours. Your feedback helps make this app better for everyone!</p>
+</div>
   </main>
 
   <footer>

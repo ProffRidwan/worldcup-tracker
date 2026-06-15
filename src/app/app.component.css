@@ -202,3 +202,63 @@ footer a:hover { color: #a7f3d0; }
   background: linear-gradient(135deg, #1a4a2e, #2d6a4f);
   border-color: #6fcf97; color: #fff;
 }
+
+/* ── Static Pages ── */
+.static-page {
+  max-width: 700px;
+  padding: 8px 0;
+}
+.static-page h2 {
+  font-size: 1.4rem; font-weight: 800;
+  color: #fff; margin-bottom: 20px;
+}
+.static-page h3 {
+  font-size: 1rem; font-weight: 700;
+  color: #6fcf97; margin: 24px 0 10px;
+}
+.static-page p {
+  color: #9ca3af; line-height: 1.7;
+  margin-bottom: 12px; font-size: 0.9rem;
+}
+.static-page ul {
+  list-style: none; padding: 0;
+  display: flex; flex-direction: column; gap: 8px;
+  margin-bottom: 16px;
+}
+.static-page ul li {
+  background: #111827;
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 10px; padding: 10px 16px;
+  color: #d1d5db; font-size: 0.88rem;
+}
+
+/* Contact */
+.contact-card {
+  background: #111827;
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 16px; padding: 24px;
+  display: flex; flex-direction: column; gap: 20px;
+  margin: 20px 0;
+}
+.contact-item {
+  display: flex; align-items: flex-start; gap: 16px;
+}
+.contact-icon {
+  font-size: 1.4rem; margin-top: 2px;
+}
+.contact-item strong {
+  display: block; color: #fff;
+  font-size: 0.9rem; margin-bottom: 4px;
+}
+.contact-item p {
+  margin: 0; font-size: 0.85rem;
+}
+.contact-item a {
+  color: #6fcf97; text-decoration: none; font-weight: 600;
+}
+.contact-item a:hover { color: #a7f3d0; }
+.contact-note {
+  font-size: 0.8rem !important;
+  color: #6b7280 !important;
+  font-style: italic;
+}
