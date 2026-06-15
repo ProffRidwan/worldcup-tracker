@@ -3,6 +3,10 @@
     {
       "source": "/api/:path*",
       "destination": "https://api.football-data.org/:path*"
+    },
+    {
+      "source": "/((?!ads.txt).*)",
+      "destination": "/index.html"
     }
   ],
   "headers": [
