@@ -5,7 +5,7 @@
       "destination": "https://api.football-data.org/:path*"
     },
     {
-      "source": "/((?!ads.txt).*)",
+      "source": "/((?!ads.txt$).*)",
       "destination": "/index.html"
     }
   ],
